@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!-- MAP MOPCH DATA EXAMPLE-->
+ <!--<link rel="stylesheet" href="css/maps.css">-->
+ <script
+  src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
+<script
+  src="http://maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>
+  
+ <div id="map"></div>
+    <div id="repeat" ng-repeat="marker in markers | orderBy : 'title'">
+         <a id="country_container" href="#" ng-click="openInfoWindow($event, marker)">
+         <label id="names" >{{marker.title}}</label></a>
