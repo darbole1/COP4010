@@ -28,7 +28,7 @@ CampusEnvironment.config(['$routeProvider',
             }).
                     when('/map',{//extention for map page 
                         templateUrl: 'view3/map.html',
-                        controller: 'MapCtrl',
+                        controller: 'LocationsMapController',
                         //css:'maps.css'
                         
             }).
