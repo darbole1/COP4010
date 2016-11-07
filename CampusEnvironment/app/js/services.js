@@ -25,3 +25,38 @@ locationsDataServiceModule.factory('LocationsDataService',['$resource',function(
                  
             });
 }]);
+
+locationsDataServiceModule.service('LocationChoice', function(){
+    
+    var locationList = [];
+
+  var addLocation = function(data) {
+      locationList.push(data);
+  };
+
+  var getLocation = function(){
+      return locationList;
+  };
+
+  return {
+    addLocation: addLocation,
+    getLocation: getLocation
+  };
+    
+    
+});
+
+//==================PARKING====================================================================================================
+
+
+var parkingDataServiceModule = angular.module('ParkingDataServiceModule',['ngResource']);
+
+var parkingSource = "http://localhost:8080/ParkingData/webresources/parking.entity.locations";
+
+parkingDataServiceModule.factory('ParkingDataService', ['$resource',function($resource){
+        return $resource(parkingSource+'?',
+        {locations:'@locations'},
+        
+        {query: {method:'GET',isArray:true, params:{locations:'@locations'}}
+        });
+}]);

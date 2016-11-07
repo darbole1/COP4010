@@ -2,7 +2,7 @@
 
 // Declare app level module which depends on views, and components
 var CampusEnvironment = angular.module('CampusEnvironment', [
- 'ngRoute','LocationsDataControllerModule', 'LocationsDataServiceModule'
+ 'ngRoute','LocationsDataControllerModule', 'LocationsDataServiceModule', 'ParkingDataServiceModule', 'ParkingDataControllerModule',
  
 ]);
 /*config(['$routeProvider', function($routeProvider) {
@@ -16,7 +16,7 @@ CampusEnvironment.config(['$routeProvider',
         $routeProvider.
                  //when('/locations',{
                  when('/',{   //Extention for home page
-                templateUrl: 'view1/enter.html', //path for home page data
+                templateUrl: 'view2/enter.html', //path for home page data
                 //controller: 'LocationsDataController',
                 //css:'homeCSS.css'
                  
@@ -28,7 +28,19 @@ CampusEnvironment.config(['$routeProvider',
             }).
                     when('/map',{//extention for map page 
                         templateUrl: 'view3/map.html',
-                        controller: 'LocationsMapController',
+                        controller: 'LocationsMapTest2Controller',
+                        //css:'maps.css'
+                        
+            }).
+                     when('/parking',{//extention for map page 
+                        templateUrl: 'view4/parking.html',
+                        controller: 'ParkingMapController',
+                        //css:'maps.css'
+                        
+            }).
+                     when('/pickLocation',{//extention for map page 
+                        templateUrl: 'view3/pickLocation.html',
+                        controller: 'DropDownDataController',
                         //css:'maps.css'
                         
             }).
