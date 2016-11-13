@@ -16,7 +16,7 @@ studentPortfolioServices.factory('StudentService', ['$resource',  function($reso
 
 var locationsDataServiceModule = angular.module('LocationsDataServiceModule', ['ngResource']);
 
-var locationsSource = "http://localhost:8080/LocationsWeb/webresources/me.campusmap.entity.locations";
+var locationsSource = "http://lamp.cse.fau.edu/~mhunte11/";
 locationsDataServiceModule.factory('LocationsDataService',['$resource',function($resource){
         return $resource(locationsSource+'?',
         {location:'@location'}, 
@@ -26,14 +26,15 @@ locationsDataServiceModule.factory('LocationsDataService',['$resource',function(
             });
 }]);
 
-locationsDataServiceModule.service('LocationChoice', function(){
+//locationsDataServiceModule.service('LocationChoice', function(){
+locationsDataServiceModule.factory('LocationChoice', function(){
     
     var locationList = [];
 
   var addLocation = function(data) {
       locationList.push(data);
   };
-
+ 
   var getLocation = function(){
       return locationList;
   };
@@ -51,7 +52,7 @@ locationsDataServiceModule.service('LocationChoice', function(){
 
 var parkingDataServiceModule = angular.module('ParkingDataServiceModule',['ngResource']);
 
-var parkingSource = "http://localhost:8080/ParkingData/webresources/parking.entity.locations";
+var parkingSource = "http://lamp.cse.fau.edu/~mhunte11/parking.php";
 
 parkingDataServiceModule.factory('ParkingDataService', ['$resource',function($resource){
         return $resource(parkingSource+'?',
