@@ -12,7 +12,7 @@
 <body>
 	<div class='container'>
 		<div class='row'>
-			<a href="http://lamp.cse.fau.edu/~alyman2013/Principles2">
+			<a href="http://lamp.cse.fau.edu/~alyman2013/Principles">
 			<?php 
 				echo "<div class='col-lg'>
 						<button name='permit' type='submit' value='";
@@ -39,11 +39,15 @@
 			<div class='row'>
 				<div class='col-lg'>
 				<?php 
-					if (!isset($_GET['location']))
+					if (!isset($_GET['location']) || empty($_GET['location']) || is_null($_GET['location']))
+					{
 						$loc = "LOCATION";
+						$locIndex = "";
+					}
 					else
 					{
-						switch($_GET['location'])
+						$locIndex = $_GET['location'];
+						switch($locIndex)
 						{
 							case 'hs26':
 								$loc = "A.D. HENDERSON UNIVERSITY SCHOOL";
@@ -77,14 +81,19 @@
 								break;
 							case 'bb48':
 								$loc = "BASEBALL STADIUM";
+								break;
 							case 'bs12':
 								$loc = "BEHAVIORAL SCIENCES";
+								break;
 							case 'bk76':
 								$loc = "BOOKSTORE";
+								break;
 							case 'un31a':
 								$loc = "BOX OFFICE";
+								break;
 							case 'pw62':
 								$loc = "BPW SCHOLARSHIP HOUSE";
+								break;
 							case 'co69a':
 								$loc = "CAMPUS OPERATIONS";
 								break;
@@ -182,59 +191,86 @@
 								$loc = "LIBRARY, S.E. WIMBERLY";
 								break;
 							case 'll31':
-								$loc = "LIFELONG LEARNING CENTER, FRIEDBERG";break;
+								$loc = "LIFELONG LEARNING CENTER, FRIEDBERG";
+								break;
 							case 'lo31':
-								$loc = "LIVE OAK PAVILION";break;
+								$loc = "LIVE OAK PAVILION";
+								break;
 							case 'cu97b':
-								$loc = "LIVING ROOM THEATERS";break;
+								$loc = "LIVING ROOM THEATERS";
+								break;
 							case 'az79':
-								$loc = "MEMORY &amp; WELLNESS CENTER, LA GREEN";break;
+								$loc = "MEMORY &amp; WELLNESS CENTER, LA GREEN";
+								break;
 							case 'dm6':
-								$loc = "ALGONQUIN HALL";break;
+								$loc = "ALGONQUIN HALL";
+								break;
 							case 'od93':
-								$loc = "OFFICE DEPOT CENTER FOR EXECUTIVE EDU.";break;
+								$loc = "OFFICE DEPOT CENTER FOR EXECUTIVE EDU.";
+								break;
 							case 'un31b':
-								$loc = "OWL CARD CENTER";break;
+								$loc = "OWL CARD CENTER";
+								break;
 							case 'ss8b':
-								$loc = "PACK-N-POST";break;
+								$loc = "PACK-N-POST";
+								break;
 							case 'pk81':
-								$loc = "PARKING GARAGE I.";break;
+								$loc = "PARKING GARAGE I.";
+								break;
 							case 'pk88':
-								$loc = "PARKING GARAGE II.";break;
+								$loc = "PARKING GARAGE II.";
+								break;
 							case 'pk103':
-								$loc = "PARKING GARAGE III.";break;
+								$loc = "PARKING GARAGE III.";
+								break;
 							case 'ph102':
-								$loc = "PARLIAMENT HALL";break;
+								$loc = "PARLIAMENT HALL";
+								break;
 							case 'pa51a':
-								$loc = "PERFORMING ARTS";break;
+								$loc = "PERFORMING ARTS";
+								break;
 							case 'cc45':
-								$loc = "PETER &amp; NONA GORDON LIBRARY/MEDIA CENTER";break;
+								$loc = "PETER &amp; NONA GORDON LIBRARY/MEDIA CENTER";
+								break;
 							case 'ss8c':
-								$loc = "PHARMACY";break;
+								$loc = "PHARMACY";
+								break;
 							case 'ps55':
-								$loc = "PHYSICAL SCIENCES";break;
+								$loc = "PHYSICAL SCIENCES";
+								break;
 							case 'pg35':
-								$loc = "PLANT GROWTH COMPLEX";break;
+								$loc = "PLANT GROWTH COMPLEX";
+								break;
 							case 'co69b':
-								$loc = "POLICE";break;
+								$loc = "POLICE";
+								break;
 							case 'rc91':
-								$loc = "RECREATION &amp; FITNESS CENTER";break;
+								$loc = "RECREATION &amp; FITNESS CENTER";
+								break;
 							case 'su80c':
-								$loc = "REGISTRAR&apos;S OFFICE";break;
+								$loc = "REGISTRAR&apos;S OFFICE";
+								break;
 							case 'rs35':
-								$loc = "RESEARCH SUPPORT FACILITY";break;
+								$loc = "RESEARCH SUPPORT FACILITY";
+								break;
 							case 'ag39':
-								$loc = "RITTER ART GALLERY";break;
+								$loc = "RITTER ART GALLERY";
+								break;
 							case 'rc74':
-								$loc = "ROPES COURSE PAVILION";break;
+								$loc = "ROPES COURSE PAVILION";
+								break;
 							case 'sc1':
-								$loc = "SANSON LIFE SCIENCES BUILDING";break;
+								$loc = "SANSON LIFE SCIENCES BUILDING";
+								break;
 							case 'pa51b':
-								$loc = "SCHMIDT CENTER GALLERY";break;
+								$loc = "SCHMIDT CENTER GALLERY";
+								break;
 							case 'bu86b':
-								$loc = "SEAN STEIN PAVILION";break;
+								$loc = "SEAN STEIN PAVILION";
+								break;
 							case 'so44b':
-								$loc = "SOCIAL SCIENCE";break;
+								$loc = "SOCIAL SCIENCE";
+								break;
 							case 'sb68':
 								$loc = "SOFTBALL STADIUM";
 								break;
@@ -298,8 +334,9 @@
 					<?php 
 						echo "<div class='" .  $_GET['permit'] . "'>";
 						echo "<input type='hidden' name='permit' value='" . $_GET['permit'] . "'>"; 
-						echo "<button id='defaultLoc' class='permit " . $_GET['permit'] . "'>LOCATION</button>"; ?>
+						echo "<button name='location' value='" . $locIndex . "' id='defaultLoc' class='permit " . $_GET['permit'] . "'>LOCATION</button>"; ?>
 						<div class='locList'>
+							<button name='location' value='' class='locItem' type='submit'>- - NONE - -</button>
 							<button name='location' value='hs26' class='locItem' type='submit'>A.D. HENDERSON UNIVERSITY SCHOOL</button>
 							<button name='location' value='ad10' class='locItem' type='submit'>ADMINISTRATION, K.R. WILLIAMS</button>
 							<button name='location' value='su80a' class='locItem' type='submit'>ADMISSIONS</button>
@@ -400,19 +437,20 @@
 		</div>
 		<div class='container'>
 			<div class='row'>
-				<button id='aboutbtn' class='col-xs-3 bottom-text' >About Us</button>
+				<button id='aboutbtn' class='col-xs-3 bottom-text'>About Us</button>
 				<div id='aboutUs' class='popup'>
 					<div class='popupContent'>
-						<div class='close'>x</div>
-						<p>We are the Kryptos! The mighty, mighty Kryptos!</p>
+						<span>About Us</span><span class='close'>x</span><br>
+						<p>We are a group of students aiming to give students an app that matters. We aim to provide an easy to use and efficient application that allows you to see parking spaces available for you to park in. Coming into school and trying to find a parking spot is an annoying and often frustrating task for students. With WhereToPark students and quickly see an overview of FAU parking, identify where they would preferably want to park and then see where there are available spots, eliminating the annoying parking lot carousel that many students participate in now.
+</p>
 					</div>
 				</div>
 				<button class='col-xs-6 bottom-text' id='company' disabled>Kryptos Production</button>
-				<button id='disbtn' class='col-xs-3 bottom-text'>Help</button>
+				<button id='disbtn' class='col-xs-3 bottom-text'>Disclaimer</button>
 				<div id='disclaimer' class='popup'>
 					<div class='popupContent'>
-						<div class='close'>x</div>
-						<p>Need Help? Too bad. We don't have that feature yet.</p>
+						<span>Disclaimer</span><span class='close'>x</span><br>
+						<p>WARNING: We are the swaglicious!</p>
 					</div>
 				</div>
 			</div>
