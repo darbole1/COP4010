@@ -7,9 +7,6 @@ var locbtn = document.getElementById('locbtn');
 var x = document.getElementsByClassName('close')[0];
 var y = document.getElementsByClassName('close')[1];
 
-aboutbtn.onclick = function() {aboutpop.style.display = 'block';}
-disbtn.onclick = function() {dispop.style.display = 'block';}
-locbtn.onclick = function() {locpop.style.display = 'block';}
 /******'X' Close******/
 x.onclick = function() {aboutpop.style.display = 'none';}
 y.onclick = function() {dispop.style.display = 'none';}
@@ -23,3 +20,7 @@ window.onclick = function(event)
 	else if (event.target == locpop)
 		locpop.style.display = 'none';
 }
+
+aboutbtn.onclick = function() {aboutpop.style.display = 'block';}
+disbtn.onclick = function() {dispop.style.display = 'block';}
+locbtn.onclick = function() {locpop.style.display = 'block';}
