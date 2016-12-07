@@ -115,7 +115,7 @@ function callToAddToProductList(){
     var inputstr = input.options[input.selectedIndex].string;
    
      
-  alert("txt :" + inputtxt + " val :" + inputval + " str: " + inputstr);
+  //alert("txt :" + inputtxt + " val :" + inputval + " str: " + inputstr);
     
                       
                       
@@ -210,7 +210,7 @@ locationsDataControllerModule.controller('LocationResultController', function ($
 
           //  infoWindow.setPosition(pos);
          //   infoWindow.setContent('Location found.');
-            map.setCenter(pos);
+            //map.setCenter(pos);
          }
     
     
@@ -497,11 +497,11 @@ autoUpdate();
 }
  //---
  
-  var mycenterControlDiv = document.createElement('div01');
+  /*var mycenterControlDiv = document.createElement('div01');
   var centerControl = new CenterControl(mycenterControlDiv, map);
 
   mycenterControlDiv.index = 1;
-  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(mycenterControlDiv);
+  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(mycenterControlDiv);*/
  
  
  //--------------------------
@@ -706,7 +706,7 @@ parkingDataControllerModule.controller('ParkingMapController', function ($scope,
    var i;  
    //var parkingLocation = new google.maps.LatLng(data[i].lat, data[i].lng);
    var parkingData = data;
-   var temp = [0,2,3,4];
+   var temp = [0,1,2,3,4,5];
    var gmarker = [];
    var counter = [];
   
@@ -810,7 +810,7 @@ var marker = new google.maps.Marker({
 
           //  infoWindow.setPosition(pos);
          //   infoWindow.setContent('Location found.');
-            map.setCenter(pos);
+           // map.setCenter(pos);
           });
       
 
@@ -887,207 +887,123 @@ google.maps.event.addListener(map, 'click', function() {
         infowindow.close();
         });
     
+    
+    
+    
+           
+           
+           
+            
+    
        for (i=0; i < parkingData.length; i++) {
            var rand = temp[Math.floor(Math.random()*temp.length)];
            //var rand = 6; 
            var occupancy =Math.floor((Math.random() * 100) + 1);
            //temp = 0;
+           //new markers
            
+             var point4 = new google.maps.LatLng(parkingData[i].lat, parkingData[i].lng);
+              createMarker(point4, parkingData[i].name);
+             
            //progress bar------------------
            
            
            
            //---------------------------
            
-         // if (rand > 1){
+      
+   
+      
+       }// end of for loop
        
-            
-            for (var parking in parkingData) {
-          // Add the circle for this city to the map.
-          var parkingCircle1 ={
-            strokeColor: parkingData[i].parkingPass,
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: parkingData[i].parkingPass,
-            fillOpacity: 0.10,
-            map: $window.map,
-            center: new google.maps.LatLng(parkingData[i].lat, parkingData[i].lng),
-            radius: Math.sqrt(parkingData[parking].area) * 100
-            
-          };
-          
-          var parkingCircle2 ={
-            strokeColor: parkingData[12].parkingPass,
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: parkingData[12].parkingPass,
-            fillOpacity: 0.01,
-            map: $window.map,
-            center: new google.maps.LatLng(parkingData[12].lat, parkingData[12].lng),
-            radius: Math.sqrt(parkingData[parking].area) * 100
-            
-          };
-          
-          var parkingCircle3 ={
-            strokeColor: parkingData[21].parkingPass,
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: parkingData[21].parkingPass,
-            fillOpacity: 0.01,
-            map: $window.map,
-            center: new google.maps.LatLng(parkingData[21].lat, parkingData[21].lng),
-            radius: Math.sqrt(parkingData[parking].area) * 100
-            
-          };
-          
-          var parkingCircle4 ={
-            strokeColor: parkingData[25].parkingPass,
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: parkingData[25].parkingPass,
-            fillOpacity: 0.01,
-            map: $window.map,
-            center: new google.maps.LatLng(parkingData[25].lat, parkingData[25].lng),
-            radius: Math.sqrt(parkingData[parking].area) * 100
-            
-          };
-          // var progressBar = new Nanobar( options );
-           var content = '<br/>' + parkingData[12].name +'<br/>'+  '<div id="progress01">' + '<span class="progress-text"></span>' + '<div class="progress-bar"></div>' + 
+       
+       var content = '<br/>' + parkingData[12].name +'<br/>'+  '<div id="progress01">' + '<span class="progress-text"></span>' + '<div class="progress-bar"></div>' + 
                   '</div>'+ '</div>' + '<a href="#/garageDisplay/">'+ '<button type="submit" onClick="history.go(0)"> MORE INFO </button>' + '</a>';    
          var content01 = '<br/>' + parkingData[21].name +'<br/>'+   '<div id="progress02">' + '<span class="progress-text"></span>' + '<div class="progress-bar"></div>' + 
                   '</div>'+ '</div>' + '<a href="#/garageDisplay/">'+ '<button type="submit" onClick="history.go(0)"> MORE INFO </button>' + '</a>'; 
          var content02 = '<br/>' + parkingData[25].name +'<br/>'+   '<div id="progress03">' + '<span class="progress-text"></span>' + '<div class="progress-bar"></div>' + 
-                  '</div>'+ '</div>' + '<a href="#/garageDisplay/">'+ '<button type="submit" onClick="history.go(0)"> MORE INFO </button>' + '</a>';   
-
-             
-         var circle2 = new google.maps.Circle(parkingCircle2);
-        createClickableCircle( $window.map,circle2,content);
+                  '</div>'+ '</div>' + '<a href="#/garageDisplay/">'+ '<button type="submit" onClick="history.go(0)"> MORE INFO </button>' + '</a>';  
+    
+    
+     var point = new google.maps.LatLng(parkingData[12].lat, parkingData[12].lng);
+       //set data to marker 
+         createMarker(point, content);
+         
+         var point2 = new google.maps.LatLng(parkingData[21].lat, parkingData[21].lng);
+           createMarker(point2, content01);
+            var point3 = new google.maps.LatLng(parkingData[25].lat, parkingData[25].lng);
+            createMarker(point3, content02);
         
-           var circle4 = new google.maps.Circle(parkingCircle4);
-           createClickableCircle( $window.map,circle4,content02);
-         var circle = new google.maps.Circle(parkingCircle1);
-      createClickableCircle( $window.map,circle,parkingData[i].name);
-       var circle3 = new google.maps.Circle(parkingCircle3);
-          createClickableCircle( $window.map,circle3,content01);
-        //counter++;  
-      
-      }
- // } //for loop rand condition
-  
-              
- 
-  
-  /*else {
-      
-      for (var parking in parkingData) {
-          // Add the circle for this city to the map.
-          var parkingCircle3 ={
-            strokeColor: parkingData[i].parkingPass,
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: parkingData[i].availability,
-            fillOpacity: 0.25,
-            map: map,
-            center: new google.maps.LatLng(parkingData[i].lat, parkingData[i].lng),
-            radius: Math.sqrt(parkingData[parking].area) * 100
-            
-          };
-          
-           var parkingCircle4 ={
-            strokeColor: parkingData[i].parkingPass,
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: parkingData[i].parkingPass,
-            fillOpacity: 0.25,
-            map: $window.map,
-            center: new google.maps.LatLng(parkingData[1].lat, parkingData[1].lng),
-            radius: Math.sqrt(parkingData[parking].area) * 100
-            
-          };
-          
-          var content2 =  '<br/>' + parkingData[1].name +'<br/>'+ occupancy + '<p>%</p>';  
-          
-           var circle4 = new google.maps.Circle(parkingCircle4);  
-      createClickableCircle( $window.map,circle4,content2); 
-        var circle3 = new google.maps.Circle(parkingCircle3);  
-      createClickableCircle( $window.map,circle3,parkingData[i].name); 
-        //counter++;  
-      
-      }
-      
-     //infoWindow.setPosition(parkingCircle);
-      //      infoWindow.setContent('Location found.');
-      
-      
-  }*/
-  
-           
-        
-  /*         
-           if (rand > 1){
-       
-            
-            for (var parking in parkingData) {
-          // Add the circle for this city to the map.
-          var parkingCircle = new google.maps.Circle({
-            strokeColor: parkingData[i].parkingPass,
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: parkingData[i].parkingPass,
-            fillOpacity: 0.25,
-            map: $window.map,
-            center: new google.maps.LatLng(parkingData[i].lat, parkingData[i].lng),
-            radius: Math.sqrt(parkingData[parking].area) * 100
-            
-          });
-      
-      }
-  }
-  else{
-      
-      for (var parking in parkingData) {
-          // Add the circle for this city to the map.
-          var parkingCircle = new google.maps.Circle({
-            strokeColor: parkingData[i].parkingPass,
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: parkingData[i].availability,
-            fillOpacity: 0.25,
-            map: map,
-            center: new google.maps.LatLng(parkingData[i].lat, parkingData[i].lng),
-            radius: Math.sqrt(parkingData[parking].area) * 100
-            
-          });
-      
-      }
-      
-     //infoWindow.setPosition(parkingCircle);
-      //      infoWindow.setContent('Location found.');
-      
-      
-  }
-  */
-  
-  //google.maps.event.addListener(parkingCircle, 'click', function() {
-   
-      
-       }// end of for loop
-        
-         function createClickableCircle(map, circle, info){
+      /*   function createClickableCircle(map, circle, info){
        var infowindow =new google.maps.InfoWindow({
             content: info
             
             
-        });  
+        });  */
+        
+        function createMarker(latlng, content) {
+    var contentString = content;
+    
+    if (rand > 1){
+    var marker = new google.maps.Marker({
+        position: latlng,
+        map: map,
+       icon: "img/residentMid01.png",
+        zIndex: Math.round(latlng.lat()*-100000)<<5
+        });
+        
+          google.maps.event.addListener(marker, 'click', function() {
+        infowindow.setContent(contentString); 
+        infowindow.open(map,marker);
+       
+        });
+    }
+    else if (rand === 2) {
+         var marker2 = new google.maps.Marker({
+        position: latlng,
+        map: map,
+        icon: "img/residentFull.png",
+        zIndex: Math.round(latlng.lat()*-100000)<<5
+        });
+         google.maps.event.addListener(marker2, 'click', function() {
+        infowindow.setContent(contentString); 
+        infowindow.open(map,marker2);
+       
+        });
+    }
+   else{
+        
+        var marker3 = new google.maps.Marker({
+        position: latlng,
+        map: map,
+        icon: "img/residentLow01.png",
+        zIndex: Math.round(latlng.lat()*-100000)<<5
+        });
+        
+         google.maps.event.addListener(marker3, 'click', function() {
+        infowindow.setContent(contentString); 
+        infowindow.open(map,marker3);
+       
+        });
+        
+    }
+ 
+
+   /* google.maps.event.addListener(marker, 'click', function() {
+        infowindow.setContent(contentString); 
+        infowindow.open(map,marker);
+       
+        });*/
+        
      
              
-        google.maps.event.addListener(circle, 'click', function() {
+       /* google.maps.event.addListener(circle, 'click', function() {
             // alert(infowindow.content);
             infowindow.setPosition(circle.getCenter());
            infowindow.open(map);
           
                     
-        });
+        });*/
         
         
  } 
@@ -1107,10 +1023,6 @@ google.maps.event.addListener(map, 'click', function() {
 parkingDataControllerModule.controller('CommuterMapController', function ($scope,$window,$routeParams,CommuterDataService){
 
 
-
-  
-
-    
     CommuterDataService.query().$promise.then(function(data){
 
     //history.go(0); 
@@ -1124,8 +1036,12 @@ parkingDataControllerModule.controller('CommuterMapController', function ($scope
            pagecounter = 0; 
        }*/
 
-
-
+      /* $window.onload = function() {
+    if(!window.location.hash) {
+        $window.location = $window.location + '#loaded';
+        $window.location.reload();
+    }
+};*/
 
 
 
@@ -1183,7 +1099,7 @@ function CenterControl(controlDiv, map) {
    var i;  
    //var parkingLocation = new google.maps.LatLng(data[i].lat, data[i].lng);
    var parkingData = data;
-   var temp = [0,2,3,4];
+   var temp = [0,1,2,3,4,5];
    var counter = 0;
   // var map;
    // this variable will collect the html which will eventually be placed in the side_bar 
@@ -1201,7 +1117,7 @@ function CenterControl(controlDiv, map) {
     
     
     
-    
+ 
     //==================================
     
      function myPosition(){    
@@ -1220,7 +1136,7 @@ var marker = new google.maps.Marker({
 
           //  infoWindow.setPosition(pos);
          //   infoWindow.setContent('Location found.');
-            map.setCenter(pos);
+            //map.setCenter(pos);
           });   
     
     
@@ -1244,13 +1160,14 @@ var marker = new google.maps.Marker({
     {
         $('#progress01 .progress-text').text(progression + '%');
         $('#progress01 .progress-bar').css({'width':progression+'%'});
-        if(progression == 100) {
+     /*   if(progression == 100) {
             clearInterval(progress);
             //alert('done');
-        } else
+        } else*/
             progression = random;
 
     }, 1000);
+     delete progression;
 });
     //----
     
@@ -1261,13 +1178,14 @@ var marker = new google.maps.Marker({
     {
         $('#progress02 .progress-text').text(progression + '%');
         $('#progress02 .progress-bar').css({'width':progression+'%'});
-        if(progression == 100) {
+       /* if(progression == 100) {
             clearInterval(progress);
             //alert('done');
-        } else
+        } else*/
             progression = random2;
 
     }, 1000);
+     delete progression;;
 });
 //------
 
@@ -1278,325 +1196,147 @@ var marker = new google.maps.Marker({
     {
         $('#progress03 .progress-text').text(progression + '%');
         $('#progress03 .progress-bar').css({'width':progression+'%'});
-        if(progression == 100) {
+       /* if(progression == 100) {
             clearInterval(progress);
             //alert('done');
-        } else
+        } else*/
             progression = random3;
 
     }, 1000);
+     delete progression;
 });
     
   
     //=====================================
     //necessary to keep content through looping..why, i have no clue..yet
     var infowindow = new google.maps.InfoWindow({
-          content: content
+         // content: content
           //size: new google.maps.Size(150,50)
            
         });
         
         
     //=========================================================
-       for (i=0; i < parkingData.length; i++) {
-           
-           
+       
+        for (i=0; i < parkingData.length; i++) {
            var rand = temp[Math.floor(Math.random()*temp.length)];
+           //var rand = 6; 
+           var occupancy =Math.floor((Math.random() * 100) + 1);
+           var occupancy2 =Math.floor((Math.random() * 100) + 1);
+           var occupancy3 =Math.floor((Math.random() * 100) + 1);
            //temp = 0;
-            var occupancy =Math.floor((Math.random() * 100) + 1);
-             var occupancy01 =Math.floor((Math.random() * 100) + 1);
-              var occupancy02 =Math.floor((Math.random() * 100) + 1);
-            
-            // power bar==============================
-     /*       function addCSSRule(sheet, selector, rules, index) {
-                if(sheet.insertRule) {
-                        sheet.insertRule(selector + "{" + rules + "}", index);
-                }
-                else {
-                        sheet.addRule(selector, rules, index);
-                }
-        }
-        
-       // addCSSRule(document.styleSheet[7], "myBar", "widht: 50%");
-
-
-            //========progressbar with function=====================
-         function move () {
+           //new markers
+           
+             var point4 = new google.maps.LatLng(parkingData[i].lat, parkingData[i].lng);
+              createMarker(point4, parkingData[i].name);
              
-                var elem = document.getElementById("myBar");   
-                var width = 50;
-               var id = setInterval(frame, 10);
-                function frame() {
-                  if (width >= 70) {
-                    clearInterval(id);
-                  } else {
-                    width++; 
-                    elem.style.width = width + '%'; 
-                  }
-                }
-                
-              }
-            
-            
-            function barChange(){
-            //var barStatus = document.querySelector("#myBar");
-            var barStatus = document.getElementById("myBar");
-            var button1 = document.getElementById("b1");
-            button1.addEventListener("click", function () {barStatus.style.width="75%";} , false);
-           // barStatus.style.width = "50%";
-       }
-       */
-       //new porogress bar edit-----------------------
-  
-       //angular.element(document.querySelector("#myBar")).css("width", "50%");
+           //progress bar------------------
+           
+           
+           
+           //---------------------------
+           
       
-     //====================================================
-      // barChange();
-             
-          //===================================================
-          
-          if (rand > 1){
-           for (var parking in parkingData) {
-               
-              //for (i=0; i < parkingData.length; i++) {   
-          // Add the circle for this city to the map.
-          var parkingCircle ={
-            strokeColor: parkingData[i].parkingPass,
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: '#008000',// parkingData[i].parkingPass,
-            fillOpacity: 0.25,
-            map: $window.map,
-            center: new google.maps.LatLng(parkingData[i].lat, parkingData[i].lng),
-            radius: Math.sqrt(parkingData[parking].area) * 100
-            
-          };
-          
-          var parkingCircle1 ={
-            strokeColor: parkingData[i].parkingPass,
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: '#7DFDFE',//parkingData[1].parkingPass,
-            fillOpacity: 0.25,
-            map: $window.map,
-            center: new google.maps.LatLng(parkingData[3].lat, parkingData[3].lng),
-            radius: Math.sqrt(parkingData[parking].area) * 100
-            
-          };
-          
-          var parkingCircle01 ={
-            strokeColor: parkingData[i].parkingPass,
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: '#7DFDFE',//parkingData[1].parkingPass,
-            fillOpacity: 0.25,
-            map: $window.map,
-            center: new google.maps.LatLng(parkingData[10].lat, parkingData[10].lng),
-            radius: Math.sqrt(parkingData[parking].area) * 100
-            
-          };
-          
-          var parkingCircle02 ={
-            strokeColor: parkingData[i].parkingPass,
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: '#7DFDFE',//parkingData[1].parkingPass,
-            fillOpacity: 0.25,
-            map: $window.map,
-            center: new google.maps.LatLng(parkingData[13].lat, parkingData[13].lng),
-            radius: Math.sqrt(parkingData[parking].area) * 100
-            
-          };
-          
-          
-         
-          //var demo= angular.element(document.querySelector("#myBar")).css("width", "50%");
-          //var w3Bar = '<div id="myProgress">' + ' <div id="myBar" >' + '</div>' +'</div>'+ '<button ng-click="demo"> click </button>';
-          
-        /* var content = '<br/>' + parkingData[3].name +'<br/>'+  occupancy + '<p>%</p>' + '<a href="#/garageDisplay/">'+ '<button type="submit"> MORE INFO </button>' + '</a>';    
-         var content01 = '<br/>' + parkingData[10].name +'<br/>'+  occupancy01 + '<p>%</p>' + '<a href="#/garageDisplay/">'+ '<button type="submit"> MORE INFO </button>' + '</a>'; 
-         var content02 = '<br/>' + parkingData[13].name +'<br/>'+  occupancy02 + '<p>%</p>' + '<a href="#/garageDisplay/">'+ '<button type="submit"> MORE INFO </button>' + '</a>';*/ 
-                       // '<div id="myProgress">' + ' <div id="myBar">' + '</div>' +'</div>'+ '<button id=b1"> click </button>';
-                 //'<a onload="move()">' + '</a>' ;
-          //console.log(document.styleSheets[0]);
-                 
-          var content = '<br/>' + parkingData[3].name +'<br/>'+  '<div id="progress01">' + '<span class="progress-text"></span>' + '<div class="progress-bar"></div>' + 
+   
+      
+       }// end of for loop
+       
+       
+      
+        /* var content = '<br/>' + parkingData[3].name +'<br/>'+  '<div id="progress01">' + '<span class="progress-text"></span>' + '<div class="progress-bar"></div>' + 
                   '</div>'+ '</div>' + '<a href="#/garageDisplay/">'+ '<button type="submit" onClick="history.go(0)"> MORE INFO </button>' + '</a>';    
          var content01 = '<br/>' + parkingData[10].name +'<br/>'+   '<div id="progress02">' + '<span class="progress-text"></span>' + '<div class="progress-bar"></div>' + 
                   '</div>'+ '</div>' + '<a href="#/garageDisplay/">'+ '<button type="submit" onClick="history.go(0)"> MORE INFO </button>' + '</a>'; 
          var content02 = '<br/>' + parkingData[13].name +'<br/>'+   '<div id="progress03">' + '<span class="progress-text"></span>' + '<div class="progress-bar"></div>' + 
-                  '</div>'+ '</div>' + '<a href="#/garageDisplay/">'+ '<button type="submit" onClick="history.go(0)"> MORE INFO </button>' + '</a>';              
-                      
-       
-       var circle01 = new google.maps.Circle(parkingCircle01); 
-       createClickableCircle( $window.map,circle01, content01);           
-      var circle1 = new google.maps.Circle(parkingCircle1);
-      createClickableCircle( $window.map,circle1, content);
-      
-       
-       
-        var circle02 = new google.maps.Circle(parkingCircle02);
-      createClickableCircle( $window.map,circle02, content02);
-      
-     var circle = new google.maps.Circle(parkingCircle); 
-      createClickableCircle( $window.map,circle, parkingData[i].name);
-  
-  
-  
-     
- 
-  
-       
-     // createClickableCircle( $window.map, circle2, content); 
-        //counter++;    
-   // }//NEW FOR LOOP
-      
+                  '</div>'+ '</div>' + '<a href="#/garageDisplay/">'+ '<button type="submit" onClick="history.go(0)"> MORE INFO </button>' + '</a>';  */
+          
+          var content = '<br/>' + parkingData[3].name +'<br/>'+  occupancy + '<p>%</p>'+ '<a href="#/garageDisplay/">'+ '<button type="submit" onClick="history.go(0)"> MORE INFO </button>' + '</a>';    
+         var content01 = '<br/>' + parkingData[10].name +'<br/>'+ occupancy2 + '<p>%</p>'+ '<a href="#/garageDisplay/">'+ '<button type="submit" onClick="history.go(1)" > MORE INFO </button>' + '</a>' ; 
+         var content02 = '<br/>' + parkingData[13].name +'<br/>'+ occupancy3 + '<p>%</p>' + '<a href="#/garageDisplay/">'+ '<button type="submit" onClick="history.go(1)"> MORE INFO </button>' + '</a>'; 
     
-      }
-        }
-        
-        
-        else {
-      
-      for (var parking in parkingData) {
-          // Add the circle for this city to the map.
-          var parkingCircle3 ={
-            strokeColor: parkingData[i].parkingPass,
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: '#FF0000',
-            fillOpacity: 0.25,
-            map: $window.map,
-            center: new google.maps.LatLng(parkingData[i].lat, parkingData[i].lng),
-            radius: Math.sqrt(parkingData[parking].area) * 100
-            
-          };
+    
+     var point = new google.maps.LatLng(parkingData[3].lat, parkingData[3].lng);
+       //set data to marker 
+         createMarker(point, content);
          
-          
-          var parkingCircle4 ={
-            strokeColor: parkingData[i].parkingPass,
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: '#7DFDFE',
-            fillOpacity: 0.25,
-            map: $window.map,
-            center: new google.maps.LatLng(parkingData[3].lat, parkingData[3].lng),
-            radius: Math.sqrt(parkingData[parking].area) * 100
+         var point2 = new google.maps.LatLng(parkingData[10].lat, parkingData[10].lng);
+           createMarker(point2, content01);
+            var point3 = new google.maps.LatLng(parkingData[13].lat, parkingData[13].lng);
+            createMarker(point3, content02);
+        
+      /*   function createClickableCircle(map, circle, info){
+       var infowindow =new google.maps.InfoWindow({
+            content: info
             
-          };
-          
-           var parkingCircle03 ={
-            strokeColor: parkingData[i].parkingPass,
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: '#7DFDFE',
-            fillOpacity: 0.25,
-            map: $window.map,
-            center: new google.maps.LatLng(parkingData[10].lat, parkingData[10].lng),
-            radius: Math.sqrt(parkingData[parking].area) * 100
             
-          };
-          
-          var parkingCircle04 ={
-            strokeColor: parkingData[i].parkingPass,
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: '#7DFDFE',
-            fillOpacity: 0.25,
-            map: $window.map,
-            center: new google.maps.LatLng(parkingData[13].lat, parkingData[13].lng),
-            radius: Math.sqrt(parkingData[parking].area) * 100
-            
-          };
-          
-          
-         //var w3Bar2 = '<div id="myProgress">' + ' <div id="myBar" >' + '</div>' +'</div>'+ '<button ng-click="demo"> click </button>';
-          
-        /* var content1 = '<br/>' + parkingData[3].name +'<br/>'+  occupancy + '<p>%</p>' + '<a href="#/garageDisplay/">'+ '<button type="submit"> MORE INFO </button>' + '</a>';
-         var content03 = '<br/>' + parkingData[10].name +'<br/>'+  occupancy01 + '<p>%</p>' + '<a href="#/garageDisplay/">'+ '<button type="submit"> MORE INFO </button>' + '</a>';
-         var content04 = '<br/>' + parkingData[13].name +'<br/>'+  occupancy02 + '<p>%</p>' + '<a href="#/garageDisplay/">'+ '<button type="submit"> MORE INFO </button>' + '</a>';*/
-          
-         var content1 = '<br/>' + parkingData[3].name +'<br/>'+  '<div id="progress01">' + '<span class="progress-text"></span>' + '<div class="progress-bar"></div>' + 
-                  '</div>'+ '</div>' + '<a href="#/garageDisplay/">'+ '<button type="submit" onClick="history.go(0)"> MORE INFO </button>' + '</a>';
-         var content03 = '<br/>' + parkingData[10].name +'<br/>'+  '<div id="progress02">' + '<span class="progress-text"></span>' + '<div class="progress-bar"></div>' + 
-                  '</div>'+ '</div>' + '<a href="#/garageDisplay/">'+ '<button type="submit" onClick="history.go(0)"> MORE INFO </button>' + '</a>';
-         var content04 = '<br/>' + parkingData[13].name +'<br/>'+  '<div id="progress03">' + '<span class="progress-text"></span>' + '<div class="progress-bar"></div>' + 
-                  '</div>'+ '</div>' + '<a href="#/garageDisplay/">'+ '<button type="submit" onClick="history.go(0)"> MORE INFO </button>' + '</a>';
-          
-          var circle4 = new google.maps.Circle(parkingCircle4);
-          createClickableCircle( $window.map,circle4, content1); 
-          var circle03 = new google.maps.Circle(parkingCircle03);
-          createClickableCircle( $window.map,circle03, content03);
-          var circle04 = new google.maps.Circle(parkingCircle04);
-          createClickableCircle( $window.map,circle04, content04);
-        var circle3 = new google.maps.Circle(parkingCircle3);
-      createClickableCircle( $window.map,circle3, parkingData[i].name); 
-        //counter++;  
-      
-      }
-      
-     //infoWindow.setPosition(parkingCircle);
-      //      infoWindow.setContent('Location found.');
-      
-      
-  }
-      
-      
-           
-       /*
-            
-            for (var parking in parkingData) {
-          // Add the circle for this city to the map.
-          var parkingCircle = new google.maps.Circle({
-            strokeColor: parkingData[i].parkingPass,
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: parkingData[i].parkingPass,
-            fillOpacity: 0.25,
-            map: $window.map,
-            center: new google.maps.LatLng(parkingData[i].lat, parkingData[i].lng),
-            radius: Math.sqrt(parkingData[parking].area) * 100
-            
-          });
-      
-      
-      
-      }*/
-      
-      
-  
-      
-       }// end of for loop*****************************for loop end quote
+        });  */
+        
+        function createMarker(latlng, content) {
+    var contentString = content;
+    
+    if (rand > 3){
+    var marker = new google.maps.Marker({
+        position: latlng,
+        map: map,
+       icon: "img/commuterFull.png",
+        zIndex: Math.round(latlng.lat()*-100000)<<5
+        });
+        
+          google.maps.event.addListener(marker, 'click', function() {
+        infowindow.setContent(contentString); 
+        infowindow.open(map,marker);
        
-       function createClickableCircle(map, circle, info){
-       var infowindow =new google.maps.InfoWindow({
-            content: info
-        });  
-        google.maps.event.addListener(circle, 'click', function() {
-            // alert(infowindow.content);
-            
-            //============================
-            infowindow.setPosition(circle.getCenter());
-            //infowindow.setPosition(circle2.getCenter());
-            infowindow.open(map);
+        });
+    }
+    else if (rand === 0) {
+         var marker2 = new google.maps.Marker({
+        position: latlng,
+        map: map,
+        icon: "img/commuterLow.png",
+        zIndex: Math.round(latlng.lat()*-100000)<<5
+        });
+         google.maps.event.addListener(marker2, 'click', function() {
+        infowindow.setContent(contentString); 
+        infowindow.open(map,marker2);
+       
+        });
+    }
+   else{
+        
+        var marker3 = new google.maps.Marker({
+        position: latlng,
+        map: map,
+        icon: "img/commuterLow.png",
+        zIndex: Math.round(latlng.lat()*-100000)<<5
         });
         
+         google.maps.event.addListener(marker3, 'click', function() {
+        infowindow.setContent(contentString); 
+        infowindow.open(map,marker3);
+       
+        });
         
-        
- }
+    }
  
- // clickcircle2
-      function createClickableCircle2(map, circle, info){
-       var infowindow =new google.maps.InfoWindow({
-            content: info
-        });  
-        google.maps.event.addListener(circle, 'click', function() {
+
+   /* google.maps.event.addListener(marker, 'click', function() {
+        infowindow.setContent(contentString); 
+        infowindow.open(map,marker);
+       
+        });*/
+        
+     
+             
+       /* google.maps.event.addListener(circle, 'click', function() {
             // alert(infowindow.content);
             infowindow.setPosition(circle.getCenter());
-            infowindow.open(map);
-        });
- }
-      
+           infowindow.open(map);
+          
+                    
+        });*/
+        
+        
+ } 
  //=================     
         
     });
@@ -1642,7 +1382,7 @@ parkingDataControllerModule.controller('ResidentMapController', function ($scope
    var i;  
    //var parkingLocation = new google.maps.LatLng(data[i].lat, data[i].lng);
    var parkingData = data;
-   var temp = [0,2];
+   var temp = [0,1,2,3,4,5];
    var counter = []; 
    
   // var map;
@@ -1710,73 +1450,95 @@ parkingDataControllerModule.controller('ResidentMapController', function ($scope
     
     //=============================================
     
-    
-    
-       for (i=0; i < parkingData.length; i++) {
-           var rand = temp[Math.floor(Math.random()*temp.length)];
-           //temp = 0;
+     var infowindow = new google.maps.InfoWindow({
+         // content: content
+          //size: new google.maps.Size(150,50)
            
-         
+        });
+    
        
-            if ( rand > 1){
-            for (var parking in parkingData) {
-          // Add the circle for this city to the map.
-          // Add the circle for this city to the map.
-          var parkingCircle ={
-            strokeColor: parkingData[i].parkingPass,
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: parkingData[i].parkingPass,
-            fillOpacity: 0.25,
-            map: $window.map,
-            center: new google.maps.LatLng(parkingData[i].lat, parkingData[i].lng),
-            radius: Math.sqrt(parkingData[parking].area) * 100
-            
-          };
-      var circle = new google.maps.Circle(parkingCircle);  
-      createClickableCircle( $window.map,circle, parkingData[i].name); 
-        //counter++;    
+        for (i=0; i < parkingData.length; i++) {
+           var rand = temp[Math.floor(Math.random()*temp.length)];
+           //var rand = 6; 
+           var occupancy =Math.floor((Math.random() * 100) + 1);
+           //temp = 0;
+           //new markers
+           
+             var point4 = new google.maps.LatLng(parkingData[i].lat, parkingData[i].lng);
+              createMarker(point4, parkingData[i].name);
+             
+           //progress bar------------------
+           
+           
+           
+           //---------------------------
+           
       
-      }
-            }
-            else{
-                
-                for (var parking in parkingData) {
-          // Add the circle for this city to the map.
-          // Add the circle for this city to the map.
-          var parkingCircle2 ={
-            strokeColor: '#FF0000',//parkingData[i].parkingPass,
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: '#FF0000',//parkingData[i].parkingPass,
-            fillOpacity: 0.25,
-            map: $window.map,
-            center: new google.maps.LatLng(parkingData[i].lat, parkingData[i].lng),
-            radius: Math.sqrt(parkingData[parking].area) * 100
-            
-          };
-      var circle2 = new google.maps.Circle(parkingCircle2);  
-      createClickableCircle( $window.map,circle2, parkingData[i].name); 
-       // counter++;    
-      
-      }
-                
-            }
-  
+   
       
        }// end of for loop
        
        
-       function createClickableCircle(map, circle, info){
+      
+         
+        
+      /*   function createClickableCircle(map, circle, info){
        var infowindow =new google.maps.InfoWindow({
             content: info
-        });  
-        google.maps.event.addListener(circle, 'click', function() {
-            // alert(infowindow.content);
-            infowindow.setPosition(circle.getCenter());
-            infowindow.open(map);
+            
+            
+        });  */
+        
+        function createMarker(latlng, content) {
+    var contentString = content;
+    
+    if (rand > 3){
+    var marker = new google.maps.Marker({
+        position: latlng,
+        map: map,
+       icon: "img/residentLow2.png",
+        zIndex: Math.round(latlng.lat()*-100000)<<5
         });
- }
+        
+          google.maps.event.addListener(marker, 'click', function() {
+        infowindow.setContent(contentString); 
+        infowindow.open(map,marker);
+       
+        });
+    }
+    else if (rand === 0) {
+         var marker2 = new google.maps.Marker({
+        position: latlng,
+        map: map,
+        icon: "img/residentFull.png",
+        zIndex: Math.round(latlng.lat()*-100000)<<5
+        });
+         google.maps.event.addListener(marker2, 'click', function() {
+        infowindow.setContent(contentString); 
+        infowindow.open(map,marker2);
+       
+        });
+    }
+   else{
+        
+        var marker3 = new google.maps.Marker({
+        position: latlng,
+        map: map,
+        icon: "img/residentMid01.png",
+        zIndex: Math.round(latlng.lat()*-100000)<<5
+        });
+        
+         google.maps.event.addListener(marker3, 'click', function() {
+        infowindow.setContent(contentString); 
+        infowindow.open(map,marker3);
+       
+        });
+        
+    
+   }
+
+   
+ } 
        
         
     });// end of data function 
@@ -1820,7 +1582,7 @@ parkingDataControllerModule.controller('VisitorMapController', function ($scope,
    var i;  
    //var parkingLocation = new google.maps.LatLng(data[i].lat, data[i].lng);
    var parkingData = data;
-   var temp = [0,2];
+   var temp = [0,1,2,3,4,5];
    var counter = []; 
    
   // var map;
@@ -1888,76 +1650,97 @@ parkingDataControllerModule.controller('VisitorMapController', function ($scope,
     
     //=============================================
     
+      var infowindow = new google.maps.InfoWindow({
+         // content: content
+          //size: new google.maps.Size(150,50)
+           
+        });
     
-    
-       for (i=0; i < parkingData.length; i++) {
+       
+        for (i=0; i < parkingData.length; i++) {
            var rand = temp[Math.floor(Math.random()*temp.length)];
+           //var rand = 6; 
+           var occupancy =Math.floor((Math.random() * 100) + 1);
            //temp = 0;
+           //new markers
            
-         
-       if (rand > 1){
-            
-            for (var parking in parkingData) {
-          // Add the circle for this city to the map.
-          // Add the circle for this city to the map.
-          var parkingCircle ={
-            strokeColor: '#008000',
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: '#008000',
-            fillOpacity: 0.25,
-            map: $window.map,
-            center: new google.maps.LatLng(parkingData[i].lat, parkingData[i].lng),
-            radius: Math.sqrt(parkingData[parking].area) * 100
-            
-          };
-      var circle = new google.maps.Circle(parkingCircle);  
-      createClickableCircle( $window.map,circle, parkingData[i].name); 
-        counter++;    
+             var point4 = new google.maps.LatLng(parkingData[i].lat, parkingData[i].lng);
+              createMarker(point4, parkingData[i].name);
+             
+           //progress bar------------------
+           
+           
+           
+           //---------------------------
+           
       
-      }
-       }
-       
-       else{
-           
-           for (var parking in parkingData) {
-          // Add the circle for this city to the map.
-          // Add the circle for this city to the map.
-          var parkingCircle ={
-            strokeColor: '#FF0000',
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: '#FF0000',
-            fillOpacity: 0.25,
-            map: $window.map,
-            center: new google.maps.LatLng(parkingData[i].lat, parkingData[i].lng),
-            radius: Math.sqrt(parkingData[parking].area) * 100
-            
-          };
-      var circle = new google.maps.Circle(parkingCircle);  
-      createClickableCircle( $window.map,circle, parkingData[i].name); 
-        counter++;    
-      
-      }
-           
-       }
-       
-  
+   
       
        }// end of for loop
        
        
-       function createClickableCircle(map, circle, info){
+      
+         
+        
+      /*   function createClickableCircle(map, circle, info){
        var infowindow =new google.maps.InfoWindow({
             content: info
-        });  
-        google.maps.event.addListener(circle, 'click', function() {
-            // alert(infowindow.content);
-            infowindow.setPosition(circle.getCenter());
-            infowindow.open(map);
+            
+            
+        });  */
+        
+        function createMarker(latlng, content) {
+    var contentString = content;
+    
+    if (rand > 3){
+    var marker = new google.maps.Marker({
+        position: latlng,
+        map: map,
+       icon: "img/visitorLow.png",
+        zIndex: Math.round(latlng.lat()*-100000)<<5
         });
- }
+        
+          google.maps.event.addListener(marker, 'click', function() {
+        infowindow.setContent(contentString); 
+        infowindow.open(map,marker);
        
+        });
+    }
+    else if (rand === 0) {
+         var marker2 = new google.maps.Marker({
+        position: latlng,
+        map: map,
+        icon: "img/visitorFull.png",
+        zIndex: Math.round(latlng.lat()*-100000)<<5
+        });
+         google.maps.event.addListener(marker2, 'click', function() {
+        infowindow.setContent(contentString); 
+        infowindow.open(map,marker2);
+       
+        });
+    }
+   else{
+        
+        var marker3 = new google.maps.Marker({
+        position: latlng,
+        map: map,
+        icon: "img/visitorMid.png",
+        zIndex: Math.round(latlng.lat()*-100000)<<5
+        });
+        
+         google.maps.event.addListener(marker3, 'click', function() {
+        infowindow.setContent(contentString); 
+        infowindow.open(map,marker3);
+       
+        });
+        
+    
+   }
+
+   
+ } 
+    
+      
         
     });// end of data function 
     
@@ -1998,7 +1781,7 @@ parkingDataControllerModule.controller('FacultyMapController', function ($scope,
    var i;  
    //var parkingLocation = new google.maps.LatLng(data[i].lat, data[i].lng);
    var parkingData = data;
-   var temp = [0,2];
+   var temp = [0,1,2,3,4,5];
    var counter = []; 
    
   // var map;
@@ -2065,77 +1848,98 @@ parkingDataControllerModule.controller('FacultyMapController', function ($scope,
     
     
     //=============================================
+     var infowindow = new google.maps.InfoWindow({
+         // content: content
+          //size: new google.maps.Size(150,50)
+           
+        });
     
-    
-    
-       for (i=0; i < parkingData.length; i++) {
+       
+        for (i=0; i < parkingData.length; i++) {
            var rand = temp[Math.floor(Math.random()*temp.length)];
+           //var rand = 6; 
+           var occupancy =Math.floor((Math.random() * 100) + 1);
            //temp = 0;
+           //new markers
            
-         
-       if (rand > 1){
-            
-            for (var parking in parkingData) {
-          // Add the circle for this city to the map.
-          // Add the circle for this city to the map.
-          var parkingCircle ={
-            strokeColor: '#008000',
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: '#008000',
-            fillOpacity: 0.25,
-            map: $window.map,
-            center: new google.maps.LatLng(parkingData[i].lat, parkingData[i].lng),
-            radius: Math.sqrt(parkingData[parking].area) * 100
-            
-          };
-      var circle = new google.maps.Circle(parkingCircle);  
-      createClickableCircle( $window.map,circle, parkingData[i].name); 
-        counter++;    
+             var point4 = new google.maps.LatLng(parkingData[i].lat, parkingData[i].lng);
+              createMarker(point4, parkingData[i].name);
+             
+           //progress bar------------------
+           
+           
+           
+           //---------------------------
+           
       
-      }
-       }
-       
-       else{
-           
-           for (var parking in parkingData) {
-          // Add the circle for this city to the map.
-          // Add the circle for this city to the map.
-          var parkingCircle ={
-            strokeColor: '#FF0000',
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: '#FF0000',
-            fillOpacity: 0.25,
-            map: $window.map,
-            center: new google.maps.LatLng(parkingData[i].lat, parkingData[i].lng),
-            radius: Math.sqrt(parkingData[parking].area) * 100
-            
-          };
-      var circle = new google.maps.Circle(parkingCircle);  
-      createClickableCircle( $window.map,circle, parkingData[i].name); 
-        counter++;    
-      
-      }
-           
-       }
-       
-  
+   
       
        }// end of for loop
        
        
-       function createClickableCircle(map, circle, info){
+      
+         
+        
+      /*   function createClickableCircle(map, circle, info){
        var infowindow =new google.maps.InfoWindow({
             content: info
-        });  
-        google.maps.event.addListener(circle, 'click', function() {
-            // alert(infowindow.content);
-            infowindow.setPosition(circle.getCenter());
-            infowindow.open(map);
+            
+            
+        });  */
+        
+        function createMarker(latlng, content) {
+    var contentString = content;
+    
+    if (rand > 3){
+    var marker = new google.maps.Marker({
+        position: latlng,
+        map: map,
+       icon: "img/facultyLow.png",
+        zIndex: Math.round(latlng.lat()*-100000)<<5
         });
- }
+        
+          google.maps.event.addListener(marker, 'click', function() {
+        infowindow.setContent(contentString); 
+        infowindow.open(map,marker);
        
+        });
+    }
+    else if (rand === 0) {
+         var marker2 = new google.maps.Marker({
+        position: latlng,
+        map: map,
+        icon: "img/facultyFull.png",
+        zIndex: Math.round(latlng.lat()*-100000)<<5
+        });
+         google.maps.event.addListener(marker2, 'click', function() {
+        infowindow.setContent(contentString); 
+        infowindow.open(map,marker2);
+       
+        });
+    }
+   else{
+        
+        var marker3 = new google.maps.Marker({
+        position: latlng,
+        map: map,
+        icon: "img/facultyMid.png",
+        zIndex: Math.round(latlng.lat()*-100000)<<5
+        });
+        
+         google.maps.event.addListener(marker3, 'click', function() {
+        infowindow.setContent(contentString); 
+        infowindow.open(map,marker3);
+       
+        });
+        
+    
+   }
+
+   
+ } 
+    
+    
+      
         
     });// end of data function 
     
@@ -2159,11 +1963,35 @@ var randomDataControllerModule = angular.module('RandomDataControllerModule',[])
 randomDataControllerModule.controller('RandomMapController', function ($scope,$window,$routeParams,ParkingDataService,RandomDataService){
     
    // var temp = [20,]
+    
+   function refreshpage(){
+            history.go(0);
+          
+   }
+   
+  var refresh;
+    var rand01 = Math.floor((Math.random()*5) + 1);
     var rand = Math.floor((Math.random()*100) + 1);
     var rand2 = Math.floor((Math.random()*100) + 1);
     var rand3 = Math.floor((Math.random()*100) + 1);
     var rand4 = Math.floor((Math.random()*100) + 1);
     var rand5 = Math.floor((Math.random()*100) + 1);
+     if (refresh > 1){
+       refresh=0; 
+   refreshpage();
+   }
+   else{
+     
+   refresh = 2;
+   
+   }
+   
+   
+  /* var occupancy2 =Math.floor((Math.random() * 100) + 1);
+   var occupancy3 =Math.floor((Math.random() * 100) + 1);
+   var occupancy4 =Math.floor((Math.random() * 100) + 1);
+   var occupancy5 =Math.floor((Math.random() * 100) + 1);*/
+  
     
     $(document).ready(function() {
     var progression = 0,
@@ -2242,6 +2070,88 @@ randomDataControllerModule.controller('RandomMapController', function ($scope,$w
     }, 1000);
 });
 
+
+
+ function occupy(){
+        if (rand > 65){
+   var occupancy = Math.floor((Math.random() * 50) + 1);
+        }
+         else if (rand < 35){
+        occupancy = Math.floor((Math.random() * 200) + 100);    
+        }
+        else if (rand < 65) {
+        occupancy = Math.floor((Math.random() * 99) + 50);    
+        }
+   //Math.floor((Math.random() * 100) + 1);
+   return occupancy;  
+   }
+   
+    function occupy2(){
+        if (rand2 > 65){
+   var occupancy2 = Math.floor((Math.random() * 50) + 1);
+        }
+        else if (rand2 < 35){
+        occupancy2 = Math.floor((Math.random() * 200) + 100);    
+        }
+        else if (rand2 < 65) {
+        occupancy2 = Math.floor((Math.random() * 99) + 50);    
+        }
+   //Math.floor((Math.random() * 100) + 1);
+   return occupancy2;  
+   }
+   
+   function occupy3(){
+        if (rand3 > 65){
+   var occupancy3 = Math.floor((Math.random() * 50) + 1);
+        }
+       else if (rand3 < 35){
+        occupancy3 = Math.floor((Math.random() * 200) + 100);    
+        }
+        else if (rand3 < 65) {
+        occupancy3 = Math.floor((Math.random() * 99) + 50);    
+        }
+   //Math.floor((Math.random() * 100) + 1);
+   return occupancy3;  
+   }
+   
+   function occupy4(){
+        if (rand4 > 65){
+   var occupancy4 = Math.floor((Math.random() * 50) + 1);
+        }
+        else if (rand4 < 35){
+        occupancy4 = Math.floor((Math.random() * 200) + 100);    
+        }
+        else if (rand4< 65) {
+        occupancy4 = Math.floor((Math.random() * 99) + 50);    
+        }
+   //Math.floor((Math.random() * 100) + 1);
+   return occupancy4;  
+   }
+   
+   function occupy5(){
+        if (rand5 > 65){
+   var occupancy5 = Math.floor((Math.random() * 50) + 1);
+        }
+        else if (rand5 < 35){
+        occupancy5 = Math.floor((Math.random() * 200) + 100);    
+        }
+        else if (rand5 < 65) {
+        occupancy5 = Math.floor((Math.random() * 99) + 50);    
+        }
+   //Math.floor((Math.random() * 100) + 1);
+   return occupancy5;  
+   }
+   
+   
+   
+    $scope.spotsAvailable = document.getElementById("occupy").innerHTML = occupy(); 
+  $scope.spotsAvailable2 = document.getElementById("occupy2").innerHTML = occupy2();
+  $scope.spotsAvailable3 = document.getElementById("occupy3").innerHTML = occupy3();
+  $scope.spotsAvailable4 = document.getElementById("occupy4").innerHTML = occupy4();
+  $scope.spotsAvailable5 = document.getElementById("occupy5").innerHTML = occupy5();
+   
+   
+   
 //====page refresh=====
 
 function refreshPage(){

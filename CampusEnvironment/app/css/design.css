@@ -31,12 +31,29 @@ body {
 	font-family: 'RockwellExtraBold','Helvetica Neue',Arial,sans-serif;
 	font-size: 300%;
 	text-align: center; }
+.name_red {
+	width: 100%;
+	min-width: 100%;
+	margin-top: -10px;
+	color: red;
+	font-family: 'RockwellExtraBold','Helvetica Neue',Arial,sans-serif;
+	font-size: 300%;
+	text-align: center; }
 
 .instruction {
 	padding: 12px;
 	width: 100%;
 	min-width: 100%;
 	color: white;
+	font-family: 'RockwellExtraBold','Helvetica Neue',Arial,sans-serif;
+	font-size: 175%;
+	text-align: center; }
+
+.instruction1 {
+	padding: 12px;
+	width: 100%;
+	min-width: 100%;
+	color: red;
 	font-family: 'RockwellExtraBold','Helvetica Neue',Arial,sans-serif;
 	font-size: 175%;
 	text-align: center; }
@@ -78,7 +95,7 @@ button:hover, button:active {
 	text-decoration: none;
 	box-shadow: inset 0 0 20px rgba(255,255,255,0.2); }
 
-.staff, .guest, .resident, .nonresident, .visitor, .all {font-family: 'RockwellExtraBold','Helvetica Neue',Arial,sans-serif;}
+.staff, .guest, .resident, .nonresident, .visitor, .all, .purple {font-family: 'RockwellExtraBold','Helvetica Neue',Arial,sans-serif;}
 
 .staff {background-color: rgba(170,14,24,1.0);}
 
@@ -89,6 +106,7 @@ button:hover, button:active {
 .nonresident {background-color: rgba(0,0,129,1.0);}
 
 .all {background-color: rgba(187,186,191,1.0);}
+.purple {background-color: rgba(128,0,128,1.0);}
 
 #company {
 	text-decoration: none;

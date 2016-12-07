@@ -1,16 +1,26 @@
 <link rel="stylesheet" href="css/progressBar.css">
 
+
+ 
+<script>
+     var occupancy =Math.floor((Math.random() * 100) + 1);
+    
+</script>
+
 <br/>
-<div class='name pad'>Garage Detail</div>
+<div class='name_red pad'>Garage Detail</div>
 <br/>
-<div class='instruction pad'>FLOOR 1</div>
+<center>
+<div class='instruction1 pad'>FLOOR 1</div>
 <div id='container'>
 <div id="progress">
     <span class="progress-text"></span>
     <div class="progress-bar"></div>
 </div>
 </div>
-<div class='instruction pad'>FLOOR 2</div>
+<div class='instruction pad'>Available: <p id="occupy"></p></div>
+<div id="demo"></div>
+<div class='instruction1 pad'>FLOOR 2</div>
 <div id='container'>
 <div id="progress2">
     <span class="progress-text"></span>
@@ -18,8 +28,10 @@
 
 </div>
 </div> 
+<!--<div class='instruction pad'>Available: {{spotsAvailable2}}</div>-->
+<div class='instruction pad'>Available: <p id="occupy2"></p></div>
 
-<div class='instruction pad'>FLOOR 3</div>
+<div class='instruction1 pad'>FLOOR 3</div>
 <div id='container'>
 <div id="progress3">
     <span class="progress-text"></span>
@@ -27,17 +39,23 @@
 
 </div>
 </div>
+<!--<div class='instruction pad'>Available: {{spotsAvailable3}}</div>-->
+<div class='instruction pad'>Available: <p id="occupy3"></p></div>
     
 
-<div class='instruction pad'>FLOOR 4</div>
+<div class='instruction1 pad'>FLOOR 4</div>
 <div id='container'>
 <div id="progress4">
     <span class="progress-text"></span>
     <div class="progress-bar"></div>
+    
+  
+</div>
+</div>
+<!--<div class='instruction pad'>Available: {{spotsAvailable4}}</div>-->
+<div class='instruction pad'>Available: <p id="occupy4"></p></div>
 
-</div>
-</div>
-<div class='instruction pad'>FLOOR 5</div>
+<div class='instruction1 pad'>FLOOR 5</div>
 <div id='container'>
 <div id="progress5">
     <span class="progress-text"></span>
@@ -45,6 +63,9 @@
 
 </div>
 </div>   
+<!--<div class='instruction pad'>Available: {{spotsAvailable5}}</div>-->
+<div class='instruction pad'>Available: <p id="occupy5"></p></div>
+</center>
 <br/>
 <center><div class='pg1perm col-lg'>
         <a href = "#/enter/"><button name='permit' type='submit' onClick='history.go(0)' value='staff' class='permit staff'>HOME</button></a>

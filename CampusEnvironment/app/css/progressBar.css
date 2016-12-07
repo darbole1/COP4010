@@ -53,7 +53,8 @@ and open the template in the editor.
 }
 
 #progress .progress-text {
-    position:left;
+    position:static;
+    float: left;
     z-index:2;
     right:0;
     color: yellow; 
@@ -77,6 +78,7 @@ and open the template in the editor.
 
 #progress2 .progress-text {
     position:left;
+    float: left;
     z-index:2;
     right:0;
     color: yellow;
@@ -100,6 +102,7 @@ and open the template in the editor.
 
 #progress3 .progress-text {
     position:left;
+    float: left;
     z-index:2;
     right:0;
     color: yellow;
@@ -123,6 +126,7 @@ and open the template in the editor.
 
 #progress4 .progress-text {
     position:left;
+    float: left;
     z-index:2;
     right:0;
     color: yellow;
@@ -146,6 +150,7 @@ and open the template in the editor.
 
 #progress5 .progress-text {
     position:left;
+    float: left;
     z-index:2;
     right:0;
     color: yellow;
