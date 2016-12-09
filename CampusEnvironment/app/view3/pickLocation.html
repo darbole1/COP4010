@@ -14,22 +14,35 @@
 <br/>
 <br/>-->
 <!--<div>{{dataPush}}</div>-->
-<div class='name pad'>Find My Class</div>
+<div class='name_red pad'>Find My Class</div>
 <br>
 <br>
 <center>
     <!--<div class ="dropdown-menu" aria-labelledby='dropdownMenuLink'>-->
         
-     <select  id="list"  >       
+     <select id="list">       
             <!--<a href = "#/parking/">-->
-            <option>--Select--</option>
+            <option>--SELECT--</option>
         </select> 
         
     
     <!--<center><a href = "#/locationResult/">TRANSFER</a>-->
     <br/>
     <br/>
-    <a href = "#/locationResult/"><button class="btn-lg btn-floating staff" id="myOpt" >SUBMIT</button></a>
+    <div class='pg1perm col-lg' id="myOpt">
+            <a href = "#/locationResult/"><button name='permit' type='submit' value='resident' class='permit resident'>FIND</button></a>
+    </div>
+    <br>
+    <div class='pg1perm col-lg'>
+       <a href = "#/map/"><button name='permit' type='submit' value='all' class='permit all'>VIEW ALL CLASSES</button></a>
+    </div>
+    <br>
+    <div class='pg1perm col-lg'>
+      <a href = "#/"><button name='permit' type='submit' value='staff' class='permit staff'>BACK</button></a>
+    </div>
+    <!--<a href = "#/locationResult/"><button class="btn-lg btn-floating staff" id="myOpt" >SUBMIT</button></a>
+    <div class='instruction pad'>OR</div>
+    <a href = "#/map/"><button class="btn-lg btn-floating staff" id="myOpt" >VIEW ALL CLASSES</button></a>-->
     
     </center>
             <!--<input style="position:absolute; top:50%; left:5%; width:40%;" type="submit" onclick="othername();"/></a></center>-->

@@ -123,6 +123,13 @@ button:hover, button:active {
 
 .bottom-text:hover {box-shadow: none;}
 
+.bottom-text2 {
+	border: none;
+	background: none;
+	color: white;//rgba(48,81,106,1.0);
+	text-decoration: underline;
+	margin-top: 10px; }
+
 #aboutbtn:hover, #disbtn:hover {
 	color: rgba(63,96,121,1.0);
 	text-decoration: underline; }
@@ -192,3 +199,5 @@ button:hover, button:active {
 	border: none;
 	box-shadow: 0 0 2px black;
 	padding: 13px 0px; }
+
+

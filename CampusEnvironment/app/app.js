@@ -28,68 +28,84 @@ CampusEnvironment.config(['$routeProvider',
             }).
                     when('/map',{//extention for map page 
                         templateUrl: 'view3/map.html',
-                        controller: 'LocationsMapTest2Controller',
+                        controller: 'LocationsMapTest2Controller'
                         //css:'maps.css'
                         
             }).
                      when('/parking',{//extention for map page 
                         templateUrl: 'view4/parking.html',
-                        controller: 'ParkingMapController',
+                        controller: 'ParkingMapController'
                         //css:'maps.css'
                         
             }).
                      when('/pickLocation',{//extention for map page 
                         templateUrl: 'view3/pickLocation.html',
-                        controller: 'DropDownDataController',
+                        controller: 'DropDownDataController'
                         //css:'maps.css'
                         
             }).
                      when('/locationResult',{//extention for map page 
                         templateUrl: 'view3/locationResult.html',
-                        controller: 'LocationResultController',
+                        controller: 'LocationResultController'
                         //css:'maps.css'
                         
             }).
                      when('/garageDisplay',{//extention for map page 
                         templateUrl: 'view4/garageDisplay.html',
-                        controller: 'RandomMapController',
-                        //css:'maps.css'
+                        controller: 'RandomMapController'
+                        //css:'maps.css
                         
             }).
                     when('/residentParking',{//extention for map page 
                         templateUrl: 'view4/residentParking.html',
-                        controller: 'ResidentMapController',
+                        controller: 'ResidentMapController'
                         //css:'maps.css'
                         
             }).
                      when('/commuterParking',{//extention for map page 
                         templateUrl: 'view4/residentParking.html',
-                        controller: 'CommuterMapController',
+                        controller: 'CommuterMapController'
                         //css:'maps.css'
                         
             }).
                     when('/visitorParking',{//extention for map page 
                         templateUrl: 'view4/residentParking.html',
-                        controller: 'VisitorMapController',
+                        controller: 'VisitorMapController'
                         //css:'maps.css'
                         
             }).
                     when('/facultyParking',{//extention for map page 
                         templateUrl: 'view4/residentParking.html',
-                        controller: 'FacultyMapController',
+                        controller: 'FacultyMapController'
                         //css:'maps.css'
                         
             }).
                     
                     
                      when('/parkingMenu',{//extention for map page 
-                        templateUrl: 'view4/parkingMenu.html',
+                        templateUrl: 'view4/parkingMenu.html'
                         //controller: 'CommuterMapController',
                         //css:'maps.css'
                         
             }).
-                   
-                    
+                    when('/howto',{//extention for map page 
+                        templateUrl: 'view1/howto.html'
+                        //controller: 'CommuterMapController',
+                        //css:'maps.css'
+                        
+            }).
+                    when('/aboutus',{//extention for map page 
+                        templateUrl: 'view1/aboutus.html'
+                        //controller: 'CommuterMapController',
+                        //css:'maps.css'
+                        
+            }).
+                    when('/disclaimer',{//extention for map page 
+                        templateUrl: 'view1/disclaimer.html'
+                        //controller: 'CommuterMapController',
+                        //css:'maps.css'
+                        
+            }).
                     
              
                

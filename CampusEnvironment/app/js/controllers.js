@@ -189,43 +189,47 @@ locationsDataControllerModule.controller('LocationResultController', function ($
     //Current location ========================================
     
  
-    
-  
-    function showLocation(position) {
-            //var latitude = position.coords.latitude;
-            //var longitude = position.coords.longitude;
-           // alert("Latitude : " + latitude + " Longitude: " + longitude);
-           
-           var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-//var greendot = 
-        var marker = new google.maps.Marker({
-            position: pos,
-            map: map,
-            icon: "img/circle-icon.png"
-            //title: 'Hello World!'
-          });
-
-          //  infoWindow.setPosition(pos);
-         //   infoWindow.setContent('Location found.');
-            //map.setCenter(pos);
-         }
-    
-    
-       function getLocationUpdate(){
-           // if(navigator.geolocation){
-               // timeout at 60000 milliseconds (60 seconds)
-               //var options = {timeout:60000};
-               geoLoc = navigator.geolocation;
-               watchID = geoLoc.watchPosition(showLocation);
-            //}
-        }
+         //-----------TEST wath --------------------
      
-       function stopWatch(){
-            geoLoc.clearWatch(watchID);
-         }
+     var marker = null;
+        function autoUpdate() {
+             
+  navigator.geolocation.getCurrentPosition(function(position) {  
+    var newPoint = new google.maps.LatLng(position.coords.latitude, 
+                                          position.coords.longitude);
+
+    if (marker) {
+      // Marker already created - Move it
+      marker.setPosition(newPoint);
+    }
+    else {
+      // Marker does not exist - Create it
+      marker = new google.maps.Marker({
+        position: newPoint,
+        map: map,
+        icon: "img/circle-icon.png"
+      });
+    }
+
+    // Center the map on the new position
+    function liveCenter(){
+    map.setCenter(newPoint);
+}
+    function deleteMarkers(){
+        clearMarkers();
+        markers = [];
+    }
+    deleteMarkers();
+//liveCenter(); 
+  }); 
+
+  // Call the autoUpdate() function every 5 seconds
+  setTimeout(autoUpdate, 5000);
+}
+
+autoUpdate();
+  
+ 
      
      //getLocationUpdate(); 
     
@@ -320,7 +324,7 @@ function createMarker(latlng, name, html) {
         });
         // call get current location here so location pops up with
        //selected index location result
-         getLocationUpdate(); 
+         //getLocationUpdate(); 
         gmarkers.push(marker);
        
        
@@ -1120,28 +1124,48 @@ function CenterControl(controlDiv, map) {
  
     //==================================
     
-     function myPosition(){    
-         navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-//var greendot = 
-var marker = new google.maps.Marker({
-    position: pos,
-    map: map,
-    icon: "img/circle-icon.png"
-    //title: 'Hello World!'
-  });
+    
+         //-----------TEST wath --------------------
+     
+      var marker = null;
+        function autoUpdate() {
+            
+  navigator.geolocation.getCurrentPosition(function(position) {  
+    var newPoint = new google.maps.LatLng(position.coords.latitude, 
+                                          position.coords.longitude);
 
-          //  infoWindow.setPosition(pos);
-         //   infoWindow.setContent('Location found.');
-            //map.setCenter(pos);
-          });   
+    if (marker) {
+      // Marker already created - Move it
+      marker.setPosition(newPoint);
+    }
+    else {
+      // Marker does not exist - Create it
+      marker = new google.maps.Marker({
+        position: newPoint,
+        map: map,
+        icon: "img/circle-icon.png"
+      });
+    }
+
+    // Center the map on the new position
+    function liveCenter(){
+    map.setCenter(newPoint);
+}
+    function deleteMarkers(){
+        clearMarkers();
+        markers = [];
+    }
+    deleteMarkers();
+//liveCenter(); 
+  }); 
+
+  // Call the autoUpdate() function every 5 seconds
+  setTimeout(autoUpdate, 5000);
+}
+
+autoUpdate();
     
-    
-     }
-   myPosition();
+   
     
     //map center button========================
     
@@ -1221,9 +1245,7 @@ var marker = new google.maps.Marker({
         for (i=0; i < parkingData.length; i++) {
            var rand = temp[Math.floor(Math.random()*temp.length)];
            //var rand = 6; 
-           var occupancy =Math.floor((Math.random() * 100) + 1);
-           var occupancy2 =Math.floor((Math.random() * 100) + 1);
-           var occupancy3 =Math.floor((Math.random() * 100) + 1);
+           
            //temp = 0;
            //new markers
            
@@ -1243,26 +1265,8 @@ var marker = new google.maps.Marker({
        
        
       
-        /* var content = '<br/>' + parkingData[3].name +'<br/>'+  '<div id="progress01">' + '<span class="progress-text"></span>' + '<div class="progress-bar"></div>' + 
-                  '</div>'+ '</div>' + '<a href="#/garageDisplay/">'+ '<button type="submit" onClick="history.go(0)"> MORE INFO </button>' + '</a>';    
-         var content01 = '<br/>' + parkingData[10].name +'<br/>'+   '<div id="progress02">' + '<span class="progress-text"></span>' + '<div class="progress-bar"></div>' + 
-                  '</div>'+ '</div>' + '<a href="#/garageDisplay/">'+ '<button type="submit" onClick="history.go(0)"> MORE INFO </button>' + '</a>'; 
-         var content02 = '<br/>' + parkingData[13].name +'<br/>'+   '<div id="progress03">' + '<span class="progress-text"></span>' + '<div class="progress-bar"></div>' + 
-                  '</div>'+ '</div>' + '<a href="#/garageDisplay/">'+ '<button type="submit" onClick="history.go(0)"> MORE INFO </button>' + '</a>';  */
           
-          var content = '<br/>' + parkingData[3].name +'<br/>'+  occupancy + '<p>%</p>'+ '<a href="#/garageDisplay/">'+ '<button type="submit" onClick="history.go(0)"> MORE INFO </button>' + '</a>';    
-         var content01 = '<br/>' + parkingData[10].name +'<br/>'+ occupancy2 + '<p>%</p>'+ '<a href="#/garageDisplay/">'+ '<button type="submit" onClick="history.go(1)" > MORE INFO </button>' + '</a>' ; 
-         var content02 = '<br/>' + parkingData[13].name +'<br/>'+ occupancy3 + '<p>%</p>' + '<a href="#/garageDisplay/">'+ '<button type="submit" onClick="history.go(1)"> MORE INFO </button>' + '</a>'; 
-    
-    
-     var point = new google.maps.LatLng(parkingData[3].lat, parkingData[3].lng);
-       //set data to marker 
-         createMarker(point, content);
-         
-         var point2 = new google.maps.LatLng(parkingData[10].lat, parkingData[10].lng);
-           createMarker(point2, content01);
-            var point3 = new google.maps.LatLng(parkingData[13].lat, parkingData[13].lng);
-            createMarker(point3, content02);
+        
         
       /*   function createClickableCircle(map, circle, info){
        var infowindow =new google.maps.InfoWindow({
@@ -1293,7 +1297,7 @@ var marker = new google.maps.Marker({
         position: latlng,
         map: map,
         icon: "img/commuterLow.png",
-        zIndex: Math.round(latlng.lat()*-100000)<<5
+       zIndex: Math.round(latlng.lat()*-100000)<<5
         });
          google.maps.event.addListener(marker2, 'click', function() {
         infowindow.setContent(contentString); 
@@ -1319,24 +1323,48 @@ var marker = new google.maps.Marker({
     }
  
 
-   /* google.maps.event.addListener(marker, 'click', function() {
-        infowindow.setContent(contentString); 
-        infowindow.open(map,marker);
-       
-        });*/
-        
-     
-             
-       /* google.maps.event.addListener(circle, 'click', function() {
-            // alert(infowindow.content);
-            infowindow.setPosition(circle.getCenter());
-           infowindow.open(map);
-          
-                    
-        });*/
+  
         
         
  } 
+ 
+            var occupancy =Math.floor((Math.random() * 100) + 1);
+           var occupancy2 =Math.floor((Math.random() * 100) + 1);
+           var occupancy3 =Math.floor((Math.random() * 100) + 1);
+ 
+   var content = '<br/>' + parkingData[14].name +'<br/>'+  occupancy + '<p>%</p>'+ '<a href="#/garageDisplay/">'+ '<button type="submit" onClick="history.go(1)">AVAILABILITY</button>' + '</a>';    
+         var content01 = '<br/>' + parkingData[12].name +'<br/>'+ occupancy2 + '<p>%</p>'+ '<a href="#/garageDisplay/">'+ '<button type="submit" onClick="history.go(1)" >AVAILABILITY</button>' + '</a>' ; 
+         var content02 = '<br/>' + parkingData[13].name +'<br/>'+ occupancy3 + '<p>%</p>' + '<a href="#/garageDisplay/">'+ '<button type="submit" onClick="history.go(1)">AVAILABILITY</button>' + '</a>'; 
+    
+    
+     var point = new google.maps.LatLng(parkingData[14].lat, parkingData[14].lng);
+       //set data to marker 
+         createMarker2(point, content);
+         
+         var point2 = new google.maps.LatLng(parkingData[12].lat, parkingData[12].lng);
+           createMarker2(point2, content01);
+            var point3 = new google.maps.LatLng(parkingData[13].lat, parkingData[13].lng);
+            createMarker2(point3, content02);
+ 
+ 
+ function createMarker2(latlng, content) {
+     
+     var contentString = content;
+     
+     
+     var marker01 = new google.maps.Marker({
+        position: latlng,
+        map: map,
+        icon: "img/garageIcon.png",
+       zIndex: Math.round(latlng.lat()*-100000)<<5
+        });
+      google.maps.event.addListener(marker01, 'click', function() {
+        infowindow.setContent(contentString); 
+        infowindow.open(map,marker01);
+       
+        });
+     
+ }
  //=================     
         
     });
@@ -1437,6 +1465,48 @@ parkingDataControllerModule.controller('ResidentMapController', function ($scope
         center: myLatLng,
         zoom: 16
     });
+    
+    //========Tracking data=========================
+    
+         //-----------TEST wath --------------------
+     
+      var marker = null;
+        function autoUpdate() {
+            
+  navigator.geolocation.getCurrentPosition(function(position) {  
+    var newPoint = new google.maps.LatLng(position.coords.latitude, 
+                                          position.coords.longitude);
+
+    if (marker) {
+      // Marker already created - Move it
+      marker.setPosition(newPoint);
+    }
+    else {
+      // Marker does not exist - Create it
+      marker = new google.maps.Marker({
+        position: newPoint,
+        map: map,
+        icon: "img/circle-icon.png"
+      });
+    }
+
+    // Center the map on the new position
+    function liveCenter(){
+    map.setCenter(newPoint);
+}
+    function deleteMarkers(){
+        clearMarkers();
+        markers = [];
+    }
+    deleteMarkers();
+//liveCenter(); 
+  }); 
+
+  // Call the autoUpdate() function every 5 seconds
+  setTimeout(autoUpdate, 5000);
+}
+
+autoUpdate();
     
     //==========center call for campus===============
     
@@ -1638,6 +1708,49 @@ parkingDataControllerModule.controller('VisitorMapController', function ($scope,
         zoom: 16
     });
     
+    
+    //========Tracking data=========================
+    
+         //-----------TEST wath --------------------
+     
+      var marker = null;
+        function autoUpdate() {
+            
+  navigator.geolocation.getCurrentPosition(function(position) {  
+    var newPoint = new google.maps.LatLng(position.coords.latitude, 
+                                          position.coords.longitude);
+
+    if (marker) {
+      // Marker already created - Move it
+      marker.setPosition(newPoint);
+    }
+    else {
+      // Marker does not exist - Create it
+      marker = new google.maps.Marker({
+        position: newPoint,
+        map: map,
+        icon: "img/circle-icon.png"
+      });
+    }
+
+    // Center the map on the new position
+    function liveCenter(){
+    map.setCenter(newPoint);
+}
+    function deleteMarkers(){
+        clearMarkers();
+        markers = [];
+    }
+    deleteMarkers();
+//liveCenter(); 
+  }); 
+
+  // Call the autoUpdate() function every 5 seconds
+  setTimeout(autoUpdate, 5000);
+}
+
+autoUpdate();
+    
     //==========center call for campus===============
     
     
@@ -1837,6 +1950,49 @@ parkingDataControllerModule.controller('FacultyMapController', function ($scope,
         zoom: 16
     });
     
+    
+    //==========Tracking Data============
+    
+         //-----------TEST wath --------------------
+     
+      var marker = null;
+        function autoUpdate() {
+            
+  navigator.geolocation.getCurrentPosition(function(position) {  
+    var newPoint = new google.maps.LatLng(position.coords.latitude, 
+                                          position.coords.longitude);
+
+    if (marker) {
+      // Marker already created - Move it
+      marker.setPosition(newPoint);
+    }
+    else {
+      // Marker does not exist - Create it
+      marker = new google.maps.Marker({
+        position: newPoint,
+        map: map,
+        icon: "img/circle-icon.png"
+      });
+    }
+
+    // Center the map on the new position
+    function liveCenter(){
+    map.setCenter(newPoint);
+}
+    function deleteMarkers(){
+        clearMarkers();
+        markers = [];
+    }
+    deleteMarkers();
+//liveCenter(); 
+  }); 
+
+  // Call the autoUpdate() function every 5 seconds
+  setTimeout(autoUpdate, 5000);
+}
+
+autoUpdate();
+    
     //==========center call for campus===============
     
     
@@ -1976,15 +2132,15 @@ randomDataControllerModule.controller('RandomMapController', function ($scope,$w
     var rand3 = Math.floor((Math.random()*100) + 1);
     var rand4 = Math.floor((Math.random()*100) + 1);
     var rand5 = Math.floor((Math.random()*100) + 1);
-     if (refresh > 1){
-       refresh=0; 
+     if (rand01 > 1){
+       //refresh=0; 
    refreshpage();
    }
-   else{
+   /*else{
      
    refresh = 2;
    
-   }
+   }*/
    
    
   /* var occupancy2 =Math.floor((Math.random() * 100) + 1);
