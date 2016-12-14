@@ -37,24 +37,8 @@ locationsDataServiceModule.factory('LocationChoice', function(){
       locationLat.push(data);
   };
  
- var addLng = function(data){
-     locationLng.push(data); 
- }
- 
-  var addName = function(data){
-     locationName.push(data); 
- }
- 
-  var getLat = function(){
-      return locationLat;
-  };
-  
-   var getLng = function(){
-      return locationLng;
-  };
-  
-   var getName = function(){
-      return locationName;
+  var getLocation = function(){
+      return locationList;
   };
 
   return {
@@ -75,14 +59,6 @@ locationsDataServiceModule.factory('LocationChoice', function(){
 var parkingDataServiceModule = angular.module('ParkingDataServiceModule',['ngResource']);
 
 var parkingSource = "http://lamp.cse.fau.edu/~mhunte11/parking.php";
-
-var residentSource = "http://lamp.cse.fau.edu/~mhunte11/resident.php";
-
-var commuterSource = "http://lamp.cse.fau.edu/~mhunte11/commuter.php";
-
-var visitorSource = "http://lamp.cse.fau.edu/~mhunte11/visitor.php";
-
-var facultySource = "http://lamp.cse.fau.edu/~mhunte11/faculty.php";
 
 parkingDataServiceModule.factory('ParkingDataService', ['$resource',function($resource){
         return $resource(parkingSource+'?',
